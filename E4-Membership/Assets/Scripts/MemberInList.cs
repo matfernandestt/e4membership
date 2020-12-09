@@ -29,7 +29,7 @@ public class MemberInList : MonoBehaviour
         memberGamercode = gamerCode;
         memberUsername = username;
         
-        slotButton.onClick.AddListener(() => memberViewPage.profileInfoPage.SetupProfile(memberPhoto, memberUsername, memberGamercode));
+        slotButton.onClick.AddListener(() => memberViewPage.profileInfoPage.OpenProfilePage(memberPhoto, memberUsername, memberGamercode));
     }
 
     private IEnumerator ParsePhoto(string url)
