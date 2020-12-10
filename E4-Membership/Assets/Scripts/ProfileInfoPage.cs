@@ -63,7 +63,7 @@ public class ProfileInfoPage : MonoBehaviour
         var form = new WWWForm();
         form.AddField("gamercode", gamerCode);
         form.AddField("gamename", gameName);
-        var request = new WWW("http://localhost/sqlconnect/addnewuserlike.php", form);
+        var request = new WWW(ServerAddresses.AddUserLikesAddress, form);
         yield return request;
         if (request.text == "0")
         {
@@ -83,7 +83,7 @@ public class ProfileInfoPage : MonoBehaviour
         var gamerCode = profileGamercode.text;
         var form = new WWWForm();
         form.AddField("gamercode", gamerCode);
-        var request = new WWW("http://localhost/sqlconnect/memberprofile.php", form);
+        var request = new WWW(ServerAddresses.MemberProfileAddress, form);
         yield return request;
         if (request.text == "1")
         {

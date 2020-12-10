@@ -67,7 +67,7 @@ public class MemberViewPage : MonoBehaviour
 
     private IEnumerator RefreshingList()
     {
-        var request = new WWW("http://localhost/sqlconnect/memberspage.php");
+        var request = new WWW(ServerAddresses.MembersPageAddress);
         yield return request;
         EraseContents();
         string[] requestReturn = request.text.Split('*');

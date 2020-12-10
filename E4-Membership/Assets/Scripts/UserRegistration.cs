@@ -56,7 +56,7 @@ public class UserRegistration : MonoBehaviour
         form.AddField("username", usernameTextField.text);
         form.AddField("photo", imageUrlField.text);
         
-        var www = new WWW("http://localhost/sqlconnect/register.php", form);
+        var www = new WWW(ServerAddresses.RegisterPageAddress, form);
         yield return www;
         if (www.text == "0")
         {

@@ -64,7 +64,7 @@ public class Login : MonoBehaviour
         }
         var form = new WWWForm();
         form.AddField("gamercode", usableGamerCode);
-        var request = new WWW("http://localhost/sqlconnect/login.php", form);
+        var request = new WWW(ServerAddresses.LoginAddress, form);
         yield return request;
 
         if (request.text == "1")
