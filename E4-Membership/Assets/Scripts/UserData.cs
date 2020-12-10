@@ -9,5 +9,14 @@ public static class UserData
 
     public static Texture2D photoTexture;
 
-    public static bool IsLoggedIn => id != null && gamercode != null && username != null && photo != null;
+    public static bool IsLoggedIn => gamercode != null && username != null && photo != null;
+
+    public static void LogOff()
+    {
+        id = null;
+        gamercode = null;
+        username = null;
+        photo = null;
+        photoTexture = null;
+    }
 }

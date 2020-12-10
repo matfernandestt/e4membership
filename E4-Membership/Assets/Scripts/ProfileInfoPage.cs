@@ -12,6 +12,7 @@ public class ProfileInfoPage : MonoBehaviour
     [SerializeField] private TextMeshProUGUI profileUsername;
     [SerializeField] private TextMeshProUGUI profileGamercode;
     [SerializeField] private Button screenLockerButton;
+    [SerializeField] private GameObject scrollViewLock;
 
     [SerializeField] private Transform scrollContents;
     [SerializeField] private Button addNewLikeButton;
@@ -43,6 +44,7 @@ public class ProfileInfoPage : MonoBehaviour
     private void CloseProfilePage()
     {
         windowEnabler.SetActive(false);
+        scrollViewLock.SetActive(false);
     }
 
     private void OpenAddNewGameScreen()
@@ -71,6 +73,7 @@ public class ProfileInfoPage : MonoBehaviour
 
     private void RefreshUserLikes()
     {
+        scrollViewLock.SetActive(true);
         EraseContents();
         StartCoroutine(RefreshingUserLikes());
     }
@@ -93,6 +96,7 @@ public class ProfileInfoPage : MonoBehaviour
                 CreateEmptyButton().SetGame(result[i]);
             }
         }
+        scrollViewLock.SetActive(false);
     }
     
     private GameSlot CreateEmptyButton()

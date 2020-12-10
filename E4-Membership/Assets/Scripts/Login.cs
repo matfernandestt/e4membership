@@ -19,7 +19,7 @@ public class Login : MonoBehaviour
     [SerializeField] private Button enterAsGuestButton;
     [SerializeField] private Button registerButton;
 
-    private void OnEnable()
+    private void Awake()
     {
         loginButton.interactable = false;
         loginButton.onClick.AddListener(ClickLogin);
@@ -31,6 +31,15 @@ public class Login : MonoBehaviour
         registerButton.onClick.AddListener(EnterRegisterPage);
         
         invalidGamerCodeLabel.gameObject.SetActive(false);
+    }
+
+    public void EnableLogin()
+    {
+        gamerCodeInputField.text = "";
+        gamerCodeInputField.interactable = true;
+        loginButton.interactable = false;
+        enterAsGuestButton.interactable = true;
+        registerButton.interactable = true;
     }
 
     private void ClickLogin()

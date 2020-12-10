@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class UserRegistration : MonoBehaviour
 {
     public Action OnCompleteRegistration;
+    public Action OnClickGoBack;
     
     [SerializeField] private TMP_InputField usernameTextField;
     [SerializeField] private TMP_InputField imageUrlField;
@@ -16,22 +17,38 @@ public class UserRegistration : MonoBehaviour
     [SerializeField] private Button registerButton;
     [SerializeField] private GamercodeConfirmationScreen confirmationScreen;
 
+    [SerializeField] private GameObject loadingLockScreen;
+    
+    [SerializeField] private Button backButton;
+
     private void Awake()
     {
         registerButton.interactable = false;
-        registerButton.onClick.AddListener(Connect);
+        registerButton.onClick.AddListener(Register);
         
         eraseUrlButton.onClick.AddListener(ErasePhotoUrl);
         eraseUrlButton.gameObject.SetActive(false);
+        
+        backButton.onClick.AddListener(GoBack);
+        backButton.gameObject.SetActive(true);
+        
+        loadingLockScreen.SetActive(false);
     }
 
-    private void Connect()
+    private void GoBack()
     {
+        OnClickGoBack?.Invoke();
+    }
+
+    private void Register()
+    {
+        backButton.gameObject.SetActive(false);
         StartCoroutine(ConnectionCoroutine());
     }
 
     private IEnumerator ConnectionCoroutine()
     {
+        loadingLockScreen.SetActive(true);
         registerButton.interactable = false;
         var form = new WWWForm();
         var randomValue = Random.Range(0, 999999).ToString("000 000");
@@ -57,10 +74,15 @@ public class UserRegistration : MonoBehaviour
         {
             Debug.Log("ERROR: " + www.text);
         }
+
+        usernameTextField.text = "";
+        imageUrlField.text = "";
+        loadingLockScreen.SetActive(false);
     }
 
     public void CompleteRegistration()
     {
+        backButton.gameObject.SetActive(true);
         confirmationScreen.DisabledState();
         OnCompleteRegistration?.Invoke();
     }

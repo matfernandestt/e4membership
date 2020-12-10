@@ -13,6 +13,10 @@ public class PageManager : MonoBehaviour
         loginPage.OnClickRegister += OpenRegisterPage;
 
         registerPage.OnCompleteRegistration += OpenMemberViewPage;
+        registerPage.OnClickGoBack += OpenLoginPage;
+
+        memberViewPage.OnClickLoginButton += OpenLoginPage;
+        memberViewPage.OnClickRegisterButton += OpenRegisterPage;
     }
 
     private void OnDestroy()
@@ -22,6 +26,17 @@ public class PageManager : MonoBehaviour
         loginPage.OnClickRegister -= OpenRegisterPage;
         
         registerPage.OnCompleteRegistration -= OpenMemberViewPage;
+        registerPage.OnClickGoBack -= OpenLoginPage;
+        
+        memberViewPage.OnClickLoginButton -= OpenLoginPage;
+        memberViewPage.OnClickRegisterButton -= OpenRegisterPage;
+    }
+
+    private void OpenLoginPage()
+    {
+        DisableAllPages();
+        loginPage.gameObject.SetActive(true);
+        loginPage.EnableLogin();
     }
 
     private void OpenMemberViewPage()
