@@ -14,6 +14,7 @@ public class MemberInList : MonoBehaviour
     private string memberId;
     private string memberGamercode;
     private string memberUsername;
+    private string memberPhotoUrl;
     private Texture2D memberPhoto;
 
     private Coroutine photoParseCoroutine;
@@ -29,11 +30,12 @@ public class MemberInList : MonoBehaviour
         memberGamercode = gamerCode;
         memberUsername = username;
         
-        slotButton.onClick.AddListener(() => memberViewPage.profileInfoPage.OpenProfilePage(memberPhoto, memberUsername, memberGamercode));
+        slotButton.onClick.AddListener(() => memberViewPage.profileInfoPage.OpenProfilePage(memberPhotoUrl, memberPhoto, memberUsername, memberGamercode));
     }
 
     private IEnumerator ParsePhoto(string url)
     {
+        memberPhotoUrl = url;
         var wwwPhoto = new WWW(url);
         yield return wwwPhoto;
         imageSlot.texture = wwwPhoto.texture;

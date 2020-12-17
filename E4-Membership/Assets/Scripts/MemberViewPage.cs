@@ -31,7 +31,7 @@ public class MemberViewPage : MonoBehaviour
         refreshButton.onClick.AddListener(RefreshList);
         scrollbarLock.SetActive(false);
         
-        myProfile.onClick.AddListener(() => profileInfoPage.OpenProfilePage(UserData.photoTexture, UserData.username, UserData.gamercode));
+        myProfile.onClick.AddListener(() => profileInfoPage.OpenProfilePage(UserData.photo, UserData.photoTexture, UserData.username, UserData.gamercode));
         logoffButton.onClick.AddListener(LoginEvent);
         
         registerNowButton.onClick.AddListener(RegisterEvent);
@@ -63,6 +63,11 @@ public class MemberViewPage : MonoBehaviour
         myProfile.gameObject.SetActive(UserData.IsLoggedIn);
         logoffButton.gameObject.SetActive(UserData.IsLoggedIn);
         guestTab.SetActive(!UserData.IsLoggedIn);
+    }
+
+    public void OnOpenWindow()
+    {
+        //Reset scroll rect to the initial position
     }
 
     private IEnumerator RefreshingList()

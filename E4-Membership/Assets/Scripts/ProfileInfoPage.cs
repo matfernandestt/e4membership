@@ -28,10 +28,11 @@ public class ProfileInfoPage : MonoBehaviour
         addNewLikeButton.onClick.AddListener(OpenAddNewGameScreen);
     }
 
-    public void OpenProfilePage(Texture2D photo, string username, string gamercode)
+    public void OpenProfilePage(string photoUrl, Texture2D photo, string username, string gamercode)
     {
         addNewLikeButton.gameObject.SetActive(gamercode == UserData.gamercode);
-        
+
+        StartCoroutine(ParsePhoto(photoUrl));
         profileImage.texture = photo;
         profileUsername.text = username;
         profileGamercode.text = gamercode;
@@ -39,6 +40,14 @@ public class ProfileInfoPage : MonoBehaviour
         windowEnabler.SetActive(true);
         
         RefreshUserLikes();
+    }
+    
+    private IEnumerator ParsePhoto(string url)
+    {
+        var wwwPhoto = new WWW(url);
+        yield return wwwPhoto;
+        profileImage.texture = wwwPhoto.texture;
+        wwwPhoto.Dispose();
     }
 
     private void CloseProfilePage()
