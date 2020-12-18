@@ -13,6 +13,7 @@ public class UserRegistration : MonoBehaviour
     [SerializeField] private TMP_InputField usernameTextField;
     [SerializeField] private TMP_InputField imageUrlField;
     [SerializeField] private Button eraseUrlButton;
+    [SerializeField] private Button pasteClipboardButton;
 
     [SerializeField] private Button registerButton;
     [SerializeField] private GamercodeConfirmationScreen confirmationScreen;
@@ -28,6 +29,8 @@ public class UserRegistration : MonoBehaviour
         
         eraseUrlButton.onClick.AddListener(ErasePhotoUrl);
         eraseUrlButton.gameObject.SetActive(false);
+        
+        pasteClipboardButton.onClick.AddListener(() => imageUrlField.text = GUIUtility.systemCopyBuffer);
         
         backButton.onClick.AddListener(GoBack);
         backButton.gameObject.SetActive(true);
@@ -55,6 +58,11 @@ public class UserRegistration : MonoBehaviour
         form.AddField("gamercode", randomValue);
         form.AddField("username", usernameTextField.text);
         form.AddField("photo", imageUrlField.text);
+        
+        form.headers["Access-Control-Allow-Credentials"] = "true";
+        form.headers["Access-Control-Allow-Headers"] = "Accept, Content-Type, X-Access-Token, X-Application-Name, X-Request-Sent-Time";
+        form.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, OPTIONS";
+        form.headers["Access-Control-Allow-Origin"] = "*";
         
         var www = new WWW(ServerAddresses.RegisterPageAddress, form);
         yield return www;

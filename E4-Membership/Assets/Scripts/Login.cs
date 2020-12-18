@@ -64,7 +64,14 @@ public class Login : MonoBehaviour
         }
         var form = new WWWForm();
         form.AddField("gamercode", usableGamerCode);
+        
+        form.headers["Access-Control-Allow-Credentials"] = "true";
+        form.headers["Access-Control-Allow-Headers"] = "Accept, Content-Type, X-Access-Token, X-Application-Name, X-Request-Sent-Time";
+        form.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, OPTIONS";
+        form.headers["Access-Control-Allow-Origin"] = "*";
+        
         var request = new WWW(ServerAddresses.LoginAddress, form);
+
         yield return request;
 
         if (request.text == "1")

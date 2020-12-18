@@ -8,11 +8,11 @@
     private const string LocalMemberProfileAddress = "http://localhost/backend/memberprofile.php";
     private const string LocalAddUserLikesAddress = "http://localhost/backend/addnewuserlike.php";
 
-    private const string HostServerLoginAddress = "http://e4membership.000webhostapp.com/backend/backend/login.php";
-    private const string HostServerRegisterPageAddress = "http://e4membership.000webhostapp.com/backend/backend/register.php";
-    private const string HostServerMembersPageAddress = "http://e4membership.000webhostapp.com/backend/backend/memberspage.php";
-    private const string HostServerMemberProfileAddress = "http://e4membership.000webhostapp.com/backend/backend/memberprofile.php";
-    private const string HostServerAddUserLikesAddress = "http://e4membership.000webhostapp.com/backend/backend/addnewuserlike.php";
+    private const string HostServerLoginAddress = "https://e4membership.000webhostapp.com/backend/backend/login.php";
+    private const string HostServerRegisterPageAddress = "https://e4membership.000webhostapp.com/backend/backend/register.php";
+    private const string HostServerMembersPageAddress = "https://e4membership.000webhostapp.com/backend/backend/memberspage.php";
+    private const string HostServerMemberProfileAddress = "https://e4membership.000webhostapp.com/backend/backend/memberprofile.php";
+    private const string HostServerAddUserLikesAddress = "https://e4membership.000webhostapp.com/backend/backend/addnewuserlike.php";
     
     public static string LoginAddress => LocalServer ? LocalLoginAddress : HostServerLoginAddress;
     public static string RegisterPageAddress => LocalServer ? LocalRegisterPageAddress : HostServerRegisterPageAddress;
