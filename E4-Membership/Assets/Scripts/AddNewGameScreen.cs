@@ -27,7 +27,7 @@ public class AddNewGameScreen : MonoBehaviour
         screenPage.SetActive(true);
     }
 
-    private void CloseScreen()
+    public void CloseScreen()
     {
         screenPage.SetActive(false);
     }

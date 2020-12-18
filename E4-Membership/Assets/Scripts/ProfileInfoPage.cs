@@ -54,6 +54,7 @@ public class ProfileInfoPage : MonoBehaviour
     {
         windowEnabler.SetActive(false);
         scrollViewLock.SetActive(false);
+        addNewGameScreen.CloseScreen();
     }
 
     private void OpenAddNewGameScreen()
