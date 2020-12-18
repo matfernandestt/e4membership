@@ -47,6 +47,9 @@ public class Login : MonoBehaviour
         gamerCodeInputField.interactable = false;
         loginButton.interactable = false;
         
+        enterAsGuestButton.interactable = false;
+        registerButton.interactable = false;
+        
         StartCoroutine(LoggingIn());
     }
 
@@ -79,6 +82,9 @@ public class Login : MonoBehaviour
             gamerCodeInputField.text = "";
             invalidGamerCodeLabel.gameObject.SetActive(true);
             gamerCodeInputField.interactable = true;
+
+            enterAsGuestButton.interactable = true;
+            registerButton.interactable = true;
         }
         else
         {
